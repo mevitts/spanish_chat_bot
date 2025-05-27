@@ -1,0 +1,7 @@
+{"time":"2025-05-27T09:57:36.7129737-04:00","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"c:\\Users\\marte\\OneDrive\\Desktop\\Nueva_carpeta\\Python\\side_proj\\wandb\\run-20250527_095736-smahdksa\\logs\\debug-core.log"}
+{"time":"2025-05-27T09:57:38.2322375-04:00","level":"INFO","msg":"created new stream","id":"smahdksa"}
+{"time":"2025-05-27T09:57:38.2327972-04:00","level":"INFO","msg":"stream: started","id":"smahdksa"}
+{"time":"2025-05-27T09:57:38.2327972-04:00","level":"INFO","msg":"sender: started","stream_id":"smahdksa"}
+{"time":"2025-05-27T09:57:38.2327972-04:00","level":"INFO","msg":"handler: started","stream_id":"smahdksa"}
+{"time":"2025-05-27T09:57:38.2327972-04:00","level":"INFO","msg":"writer: Do: started","stream_id":"smahdksa"}
+{"time":"2025-05-27T09:57:38.5181332-04:00","level":"INFO","msg":"Starting system monitor"}

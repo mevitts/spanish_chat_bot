@@ -1,0 +1,42 @@
+{
+  "os": "Windows-11-10.0.26100-SP0",
+  "python": "CPython 3.12.3",
+  "startedAt": "2025-05-27T13:57:36.706742Z",
+  "program": "spanish_conversation_bot.ipynb",
+  "codePath": "side_proj\\spanish_conversation_bot.ipynb",
+  "git": {
+    "remote": "https://github.com/mevitts/Python.git",
+    "commit": "b26f6a956ac756cd545b9099595cd4f0fe0b5f70"
+  },
+  "email": "martevitts@gmail.com",
+  "root": "c:\\Users\\marte\\OneDrive\\Desktop\\Nueva_carpeta\\Python\\side_proj",
+  "host": "MatthewEvitts",
+  "executable": "c:\\Users\\marte\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+  "codePathLocal": "spanish_conversation_bot.ipynb",
+  "cpu_count": 8,
+  "cpu_count_logical": 16,
+  "gpu": "NVIDIA GeForce RTX 3060 Laptop GPU",
+  "gpu_count": 1,
+  "disk": {
+    "/": {
+      "total": "1001998585856",
+      "used": "599048376320"
+    }
+  },
+  "memory": {
+    "total": "16541437952"
+  },
+  "cpu": {
+    "count": 8,
+    "countLogical": 16
+  },
+  "gpu_nvidia": [
+    {
+      "name": "NVIDIA GeForce RTX 3060 Laptop GPU",
+      "memoryTotal": "6442450944",
+      "cudaCores": 3840,
+      "architecture": "Ampere"
+    }
+  ],
+  "cudaVersion": "12.6"
+}
