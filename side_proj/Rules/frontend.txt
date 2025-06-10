@@ -1,0 +1,8 @@
+frontend/
+├── src/
+│   ├── components/
+│   │   ├── Chat.jsx   
+│   │   ├── Message.jsx     
+│   │   └── AudioPlayer.jsx 
+│   ├── App.jsx
+│   └── index.js
