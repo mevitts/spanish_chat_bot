@@ -1,0 +1,178 @@
+Speech-to-Text Model Fine-tuning: Requirements and To-Do List
+This document outlines the requirements and a step-by-step plan for fine-tuning a speech-to-text (STT) model specifically for Spanish conversational audio, using data from popular Spanish podcasts.
+
+1. Project Goal
+The primary objective is to fine-tune an existing pre-trained speech-to-text model (specifically, the Whisper model, for which setup is already in place) to accurately transcribe conversational Spanish audio, with a particular focus on the style and vocabulary found in podcasts. The aim is to achieve high accuracy in transcribing natural, informal Spanish speech, including slang, colloquialisms, and diverse accents.
+
+2. Data Acquisition
+The success of fine-tuning heavily relies on the quality and quantity of the training data. This section focuses on creating the comprehensive dataset needed for fine-tuning.
+
+Audio Sources:
+
+Primary Source: Spotify podcasts, specifically: (If you can find other relevant podcasts, feel free to add them as well)
+
+The Wild Project
+
+Aleja y La Grua
+
+No Hay Tos
+
+Bibliotequeando
+
+Advanced Spanish Podcast by Spanish Language Coach
+
+Requirement: Develop or utilize a method to extract high-quality audio files (e.g., MP3, WAV) from these podcasts. Consider tools or APIs that allow for programmatic access if direct download is not feasible.
+
+Transcripts:
+
+Requirement: Obtain accurate, time-aligned transcripts for each audio file.
+
+Prioritize existing official transcripts if available (e.g., from podcast creators, Spotify's own transcript features if exportable).
+
+If official transcripts are not available, consider:
+
+Leveraging existing STT services (e.g., Google Cloud Speech-to-Text, AWS Transcribe) to generate initial transcripts, followed by manual review and correction.
+
+Crowdsourcing or manual transcription for highly accurate results, especially for conversational nuances.
+
+Format: Transcripts should be in a plain text format, ideally synchronized with audio timestamps (e.g., VTT, SRT, or a simple text file per audio segment).
+
+3. Data Preparation and Preprocessing (Dataset Creation Focus)
+Clean and consistent data is crucial for effective model training. This section details the steps to create the fine-tuning dataset.
+
+Audio Preprocessing:
+
+Normalization: Ensure consistent audio levels across all files.
+
+Resampling: Convert all audio to a uniform sampling rate (e.g., 16 kHz), which is common for many STT models like Whisper.
+
+Format Conversion: Convert all audio to a consistent format (e.g., WAV).
+
+Segmentation: Segment long audio files into shorter, manageable chunks (e.g., 5-30 seconds), aligning with natural pauses or speaker turns. Each segment should have a corresponding transcript.
+
+Transcript Preprocessing:
+
+Cleaning: Remove non-speech elements (e.g., "uhm," "like," laughter, background noise descriptions) unless specifically required for the model's output.
+
+Punctuation and Capitalization: Decide on a consistent approach (e.g., normalize all text to lowercase, standardize punctuation). This depends on the target model's input requirements.
+
+Speaker Diarization (Optional but Recommended): If the goal is to identify different speakers, transcripts should include speaker labels. This requires additional processing during data preparation.
+
+Synchronization: Crucially, ensure that each audio segment has a perfectly aligned transcript. Misalignments will negatively impact training.
+
+Dataset Structure:
+
+The final dataset should be structured in a format compatible with Hugging Face's datasets library, typically as a collection of audio paths and their corresponding text transcripts. This might involve creating a JSON Lines file or similar.
+
+Dataset Splitting:
+
+Divide the prepared data into training, validation, and test sets (e.g., 80% training, 10% validation, 10% test).
+
+Ensure representative distribution of different speakers, topics, and audio qualities across all sets.
+
+4. Model Selection and Environment Setup
+The Whisper model setup is already in place. This section outlines the environment for dataset creation and fine-tuning.
+
+Base Model Selection:
+
+Whisper Model: The project will utilize the Whisper model for fine-tuning.
+
+Development Environment:
+
+Programming Language: Python (version 3.8+ recommended).
+
+Libraries:
+
+transformers (Hugging Face) for model loading and fine-tuning.
+
+pytorch or tensorflow (depending on the chosen model's framework).
+
+librosa or pydub for audio processing.
+
+datasets (Hugging Face) for efficient data loading and preparation.
+
+accelerate (Hugging Face) for distributed training if needed.
+
+Compute: Access to a GPU (e.g., NVIDIA V100, A100, or consumer-grade GPUs like RTX 3080/4090) is highly recommended for efficient fine-tuning.
+
+5. Fine-tuning Process
+The core of the project involves adapting the pre-trained model to the specific dataset.
+
+Configuration:
+
+Define fine-tuning parameters: learning rate, batch size, number of epochs, optimizer, scheduler.
+
+Implement early stopping to prevent overfitting.
+
+Training Loop:
+
+Load the pre-trained Whisper model and tokenizer.
+
+Prepare data loaders for training and validation sets using the created dataset.
+
+Iterate through epochs, performing forward and backward passes.
+
+Save model checkpoints periodically.
+
+Evaluation:
+
+Regularly evaluate the model on the validation set during training.
+
+Primary Metrics:
+
+Word Error Rate (WER): The standard metric for STT, measuring the number of errors (substitutions, deletions, insertions) at the word level.
+
+Character Error Rate (CER): Useful for languages with complex orthography or for assessing character-level accuracy.
+
+Qualitative Assessment: Listen to sample transcriptions to identify common errors and areas for improvement.
+
+6. Model Deployment and Inference
+Once fine-tuned, the model should be ready for use.
+
+Inference Pipeline: Develop a script or application to load the fine-tuned model and perform real-time or batch transcription on new Spanish audio.
+
+API (Optional): Consider wrapping the model in a REST API for easy integration into other applications.
+
+Optimization: Quantization or model pruning for faster inference if necessary.
+
+7. Hugging Face Dataset Upload
+Upon completion of the dataset creation and validation, the processed dataset will be uploaded to the Hugging Face Hub.
+
+Requirements:
+
+Hugging Face account and huggingface_hub library installed.
+
+Dataset should be in a compatible format (e.g., DatasetDict object from the datasets library).
+
+Appropriate metadata (description, license, language tags) should be prepared.
+
+Process:
+
+Authenticate with Hugging Face Hub.
+
+Use dataset.push_to_hub() to upload the dataset.
+
+Ensure proper versioning if updates are made.
+
+8. Resource Requirements
+Computational Resources:
+
+GPU: Essential for reasonable training times. The more VRAM, the larger the batch size and model size can be.
+
+CPU: Sufficient cores for data loading and preprocessing.
+
+RAM: Enough memory to handle the dataset and model.
+
+Storage:
+
+Ample disk space for raw audio files, processed audio, transcripts, and model checkpoints (potentially hundreds of GBs to several TBs depending on data volume).
+
+Time Commitment:
+
+Data acquisition and preparation: Significant time investment.
+
+Environment setup: Moderate.
+
+Fine-tuning and experimentation: Iterative process, can take days to weeks depending on data size and desired accuracy.
+
+This comprehensive plan should guide the fine-tuning process effectively.
