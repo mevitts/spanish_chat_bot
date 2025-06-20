@@ -4,6 +4,7 @@ Converts text response to audio
 import sounddevice as sd
 from scipy.io import wavfile
 from TTS.api import TTS
+from sympy import false
 
 
 def text_to_speech(text, output_path="output.wav"):

@@ -22,3 +22,35 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Environment variables and API keys
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+tokens.env
+
+# Audio files
+*.wav
+*.mp3
+*.m4a
+output.wav
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Jupyter notebooks
+.ipynb_checkpoints
+
+# Model files and logs
+wandb/
+*.pth
+*.pt
+*.bin
+
+# OS generated files
+Thumbs.db
+.DS_Store

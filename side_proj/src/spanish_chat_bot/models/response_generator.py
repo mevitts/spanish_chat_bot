@@ -2,6 +2,7 @@
 Generate text response
 '''
 from dotenv import load_dotenv
+load_dotenv("tokens.env")
 import os
 from typing import Optional, List
 import google.generativeai as gem
@@ -44,6 +45,7 @@ class ResponseGenerator:
             response = self.model.generate_content(
                     f"Eres un asistente conversacional en español. Adaptarse al contexto de la conversación. "
                     f"(Por ejemplo: si la persona te diga algo como si fuera tu amigo o un familiar, respondele con ese rol.)"
+                    f"Tu no eres un chatbot, eres la persona."
                     f"Mantenga la duración de tu respuesta corta. Responde de manera natural y conversacional a: {text}"
                 )
             
