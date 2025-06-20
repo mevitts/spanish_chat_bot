@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
-const RecordingInterface = () => {
+const RecordingInterface = ({ onNewMessage }) => {
     const [audioData, setAudioData] = useState(null);
     const [currentTranscription, setCurrentTranscription] = useState('');
     const [transcribedText, setTranscribedText] = useState('');
     const [isRecording, setIsRecording] = useState(false);
     const [isProcessing, setIsProcessing] = useState(false); //when audio is processing 
     const [isGenerating, setIsGenerating] = useState(false);
-    const [conversationHistory, setConversationHistory] = useState([]);
     
-
     useEffect(() => {
         const processAudio = async () => {
             if (audioData && !isRecording) {  // Only process if we have audioData and recording is stopped
@@ -81,12 +79,14 @@ const RecordingInterface = () => {
             });
             const { response, audioUrl } = await botResponse.json();//parse json response
 
-            //update message history
-            setConversationHistory(prev => [...prev, {
-                user: transcription,
-                bot: response,
-                audioUrl : audioUrl
-            }]);
+            // Send new message up to the parent component
+            if (onNewMessage) {
+                onNewMessage({
+                    user: transcription,
+                    bot: response,
+                    audioUrl: audioUrl
+                });
+            }
 
             //play audio
             const audio = new Audio(audioUrl);
@@ -117,20 +117,20 @@ const RecordingInterface = () => {
     }
 
     return (
-        <div className="flex flex-col items-center space-y-4 p-4">
-            {/* Visualizer Area (status display)*/}
-            <div className="w-full h-24 bg-gray-100 rounded-lg flex items-center justify-center">
+        <div className="flex flex-col items-center space-y-3">
+            {/* Visualizer Area (status display) - smaller height for bottom layout*/}
+            <div className="w-full h-16 bg-gray-100 rounded-lg flex items-center justify-center">
                 {/*shows different message depending on stage of process.*/}
                 {isRecording ? (
                      <div className="flex flex-col items-center">
-                        <p className="text-gray-700 mb-2">Grabando...</p>
-                        <div className="flex space-x-4">
+                        <p className="text-gray-700 mb-1 text-sm">Grabando...</p>
+                        <div className="flex space-x-2">
                             {[...Array(5)].map((_, i) => (
                             <div
                                 key={i}
-                                className="w-8 bg-blue-500 rounded-full animate-pulse"
+                                className="w-6 bg-blue-500 rounded-full animate-pulse"
                                 style={{
-                                    height: `${Math.random() * 40 + 20}px`,
+                                    height: `${Math.random() * 30 + 15}px`,
                                     animationDelay: `${i * 0.1}s`
                                 }}
                             />
@@ -138,13 +138,13 @@ const RecordingInterface = () => {
                         </div>
                     </div>
                 ) : isProcessing ? (
-                    <p className="text-gray-700">Procesando audio...</p>
+                    <p className="text-gray-700 text-sm">Procesando audio...</p>
                 ) : isGenerating ? (
-                    <p className="text-gray-700">Generando respuesta...</p>
+                    <p className="text-gray-700 text-sm">Generando respuesta...</p>
                 ) : currentTranscription ? (
-                    <p className="text-gray-700">{currentTranscription}</p>
+                    <p className="text-gray-700 text-sm">{currentTranscription}</p>
                 ) : (
-                    <p className="text-gray-700">Click the record button to start speaking</p>
+                    <p className="text-gray-700 text-sm">Click the record button to start speaking</p>
                 )
             }
             </div>

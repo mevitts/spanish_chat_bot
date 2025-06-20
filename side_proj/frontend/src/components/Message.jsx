@@ -43,7 +43,9 @@ const ChatMessage = ({ message, isBot = false }) => {
             padding: '0.5rem',
             borderRadius: '0.8rem',
             color: 'white',
-            width: '100%'
+            width: 'fit-content',
+            maxWidth: '100%',
+            wordBreak: 'break-word'
           }}>
           <p>{message}</p>
         </div>
