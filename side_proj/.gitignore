@@ -1,0 +1,48 @@
+# Environment variables and API keys
+.env
+.env.local
+tokens.env
+
+# Audio files
+*.wav
+*.mp3
+*.m4a
+output.wav
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# Jupyter notebooks
+.ipynb_checkpoints
+
+# Model files and logs
+wandb/
+*.pth
+*.pt
+*.bin
+
+# OS generated files
+Thumbs.db
+.DS_Store
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp 

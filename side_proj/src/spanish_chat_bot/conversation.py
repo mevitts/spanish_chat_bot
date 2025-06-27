@@ -11,7 +11,32 @@ class Conversation:
         """Initialize the conversation handler."""
         self.is_active = False
         self.conversation_history = []
+        self.audio_files = []
 
+
+    def process_audio(self, audio_data):
+        text = transcribe_audio(audio_data)
+        
+        response = generate_response(text)
+        
+        audio_path = text_to_speech(response)
+        
+        #conversation history
+        self.conversation_history.append({
+            'user': text,
+            'bot': response,
+            'audio_path': audio_path,
+            'timestamp': time.time()
+        })
+        
+        return {
+            'transcription': text,
+            'response': response,
+            'audio_path': audio_path
+        }
+    
+        
+        
     def start(self):
         """Start the conversation loop."""
         self.is_active = True
@@ -25,10 +50,10 @@ class Conversation:
                 
                 #transcribe audio to text
                 text = transcribe_audio(audio)
+                #print(f"Dijiste: {text}? Y/N")
                 if not text:
                     print("No pude entender eso. ¿Podrías repetirlo?")
                     continue
-            
                 
                 #generate response
                 response = generate_response(text)
