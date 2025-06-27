@@ -1,6 +1,6 @@
-# Spanish Conversational Voice Bot (Whisper + LLM + TTS)
+# Contigo: Spanish Conversational Voice Bot (Whisper + LLM + TTS)
 
-This project is a modular, voice-based Spanish conversational bot that enables **spoken conversations** in Spanish. It uses **Whisper** for speech-to-text, a Spanish-capable **language model** for generating responses, and **text-to-speech** synthesis to reply vocally.
+Contigo is a modular, voice-based Spanish conversational bot that enables **spoken conversations** in Spanish. It uses **Whisper** for speech-to-text, a Spanish-capable **language model** for generating responses, and **text-to-speech** synthesis to reply vocally. 
 
 **Status: Proof of Concept Operational**
 
@@ -11,6 +11,8 @@ Expansion on this proof of concept is actively in development.
 ## Inspiration
 
 This project provides accessible language learning via natural human-computer interaction. Participation in conversations in the target language is one of the best ways to advance language learning. As a result, this project provides a valuable opportunity for those who do not have the ability to have conversations in Spanish with other speakers.
+
+**"Contigo"** is the Spanish word for "with you." This name was chosen to reflect the project's core mission: to create a supportive and interactive language learning partner. The bot is designed to be "with you" on your learning journey, providing a safe and accessible space to practice speaking and build conversational confidence.
 
 Also, as a recent graduate, this project helps me sharpen my skills in:
 - Fine-tuning foundational models for practical tasks
